@@ -411,6 +411,16 @@ footer#footer .cc-badge {
     padding: 20px 15px;
     box-sizing: border-box;
   }
+  .main-content {
+    width: 100%;
+    min-height: 100px;
+    padding: 20px 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
 
   footer#footer {
     font-size: 13px;
