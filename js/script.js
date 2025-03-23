@@ -4,7 +4,7 @@ const reasons = {
       "「該！我才不在意這點小錢！」",
       "「該！你值得更好的，而不是更慘的。」",
       "「該！被薪水羞辱久了，總要自尊回來一下。」",
-      "「該！我夢到自己離職，醒來居然失望。」",
+      "「該！我夢到自己離職，醒來居然在偷笑。」",
       "「該！我沒在做事，只是在耗生命。」",
       "「該！公司已經變成我的壞習慣。」",
       "「該！我不應該在 PPT 裡找人生意義。」",
@@ -290,7 +290,7 @@ function updateLanguage() {
 
   if (document.getElementById("dumbReasonBtn")) {
     document.getElementById("dumbReasonBtn").innerText =
-      currentLanguage === "zh" ? "這是你的離職理由" : "See the Quit Reasons";
+      currentLanguage === "zh" ? "查看你的離職理由" : "See the Quit Reasons";
   }
 
   if (document.getElementById("userReason")) {
