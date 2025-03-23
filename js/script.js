@@ -310,8 +310,8 @@ function updateLanguage() {
   if (document.getElementById("submitTitle")) {
     document.getElementById("submitTitle").innerText =
       currentLanguage === "zh"
-        ? "分享給我們你的離職理由"
-        : "Share your reason for quitting with us!";
+        ? "分享大家你的離職理由"
+        : "Share your reason for quitting with everyone!";
   }
 
   if (document.getElementById("reasonsTitle")) {

@@ -431,8 +431,11 @@ footer#footer .cc-badge {
     padding: 10px 12px;
     box-sizing: border-box;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
+    position: absolute; /* 這裡改為 absolute */
+    left: 50%; /* 水平置中 */
+    transform: translateX(-50%); /* 水平置中 */
   }
+  
 
   .menu-center {
     margin-top: -5px;
@@ -496,7 +499,8 @@ footer#footer .cc-badge {
   #submitTitle {
     font-size: 24px;
     text-align: center;
-    margin-bottom: -20px;
+    margin-top: 45px;
+    padding: 10px 10px 0px 10px;
   }
 
   textarea {
