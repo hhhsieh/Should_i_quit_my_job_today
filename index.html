@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>今天該離職了嗎？</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+  
+</head>
+
+<body>
+  <div class="top-menu">
+    <div class="left-space"></div>
+
+    <div class="menu-center">
+      <div class="menu-group">
+        <a href="index.html" class="menu-link" id="menu-gen">今天該離職了嗎？ Time to quit my job?</a>
+        <a href="submit.html" class="menu-link" id="menu-submit">分享給我們更多離職的理由 Share more reasons for quitting with us!</a>
+      </div>
+    </div>
+
+    <div class="right-buttons">
+      <button class="mode-btn" onclick="toggleDarkMode()">🌙</button>
+      <button id="lang-toggle" class="lang-btn" onclick="toggleLanguage()">🇹🇼 / 🇬🇧</button>
+    </div>
+  </div>
+  <h1 id="title">今天該離職了嗎？</h1>
+
+  <button id="generateBtn" onclick="generateReason()">開始！</button>
+
+  <p id="result">☝️ 機會＆命運？</p>
+
+  <button id="dumbReasonBtn" onclick="generateDumbReason()" style="display: none;"> 這是你的離職理由</button>
+  <p id="dumbResult" class="dumb-result"></p>
+
+  <button id="restartBtn" onclick="restartPage()">🔄 Restart</button>
+
+ 
+ <footer id="footer">
+  <p style="margin: 0;">
+    © 2025 今天該離職了嗎？<br>
+    本網站以
+    <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">
+      <strong>CC BY-NC 4.0 創用 CC 授權</strong>
+    </a>
+    釋出。<br>
+    歡迎非商業用途的分享與改作，請註明原作者與出處。
+  </p>
+  <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">
+    <img src="https://licensebuttons.net/l/by-nc/4.0/88x31.png" alt="CC BY-NC 4.0" style="margin-top: 6px; height: 24px; filter: invert(0);" class="cc-badge">
+  </a>
+</footer>
+<style>
+  body.dark-mode footer {
+    background: #333;
+    color: #f5f5f5;
+  }
+  body.dark-mode footer a {
+    color: #f5f5f5;
+  }
+  body.dark-mode .cc-badge {
+    filter: invert(1);
+  }
+</style>
