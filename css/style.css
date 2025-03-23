@@ -3,23 +3,23 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
-  min-height: 100vh;
+  min-height: 100vh; /* Sticky Footer 關鍵 */
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Sticky Footer 關鍵 */
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-start; /* 調整為從頂端開始排列 */
   background-color: #f9f9f9;
   transition: background 0.3s, color 0.3s;
 }
 
-
+/* 📌 頂部選單 */
 .top-menu {
   position: fixed;
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr auto 1fr; /* 左中右三欄 */
   align-items: center;
   width: 95%;
   max-width: 1300px;
@@ -27,7 +27,7 @@ body {
   padding: 10px 20px;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  z-index: 10;
+  z-index: 10; /* 確保 top-menu 始終在最上層 */
 }
 
 
@@ -54,7 +54,7 @@ body {
     margin: 0;
 }
 
-
+/* 👉 按鈕一排左右排，間距 50px */
 .button-row {
     display: flex;
     gap: 50px;
@@ -62,7 +62,7 @@ body {
     align-items: center;
 }
 
-
+/* 👉 統一按鈕樣式 */
 .menu-btn {
     display: inline-block;
     text-align: center;
@@ -82,7 +82,7 @@ body {
     transform: scale(1.05);
 }
 
-
+/* 🎨 選單按鈕 */
 .menu-group {
     display: flex;
     gap: 40px;
@@ -113,7 +113,7 @@ body {
     font-weight: bold;
   }
   
-
+/* 🌙 `Dark Mode` & 🇬🇧 `Language` 按鈕 */
 .mode-btn, .lang-btn {
     background: #d5d5d5;
     font-size: 22px;
@@ -126,14 +126,14 @@ body {
     transition: background 0.3s, color 0.3s, transform 0.2s ease-in-out;
 }
 
-
+/* 🖱 滑鼠懸停變色 */
 .menu-link:hover, .mode-btn:hover, .lang-btn:hover {
     background-color: #bbbbbb;
     transform: scale(1.1);
 }
 
 .main-content {
-  flex: 1;
+  flex: 1; /* Sticky Footer 關鍵：推動 footer 貼底 */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -147,13 +147,14 @@ body {
   font-size: 80px;
   font-weight: bold;
   color: #333;
-  margin-top: 20px;
+  margin-top: 20px; /* 根據需要調整與頂部的距離 */
   margin-bottom: 20px;
-  position: relative;
-  z-index: 5;
+  position: relative; /* 確保它不會隨其他元素的動畫改變位置 */
+  z-index: 5; /* 確保它不被遮擋 */
 }
 
 
+/* 📌 主要內容 */
 .content {
   display: flex;
   flex-direction: column;
@@ -161,7 +162,7 @@ body {
   justify-content: center;
   padding: 20px;
   box-sizing: border-box;
-  margin-top: 120px;
+  margin-top: 120px; /* 這裡保留與頂部選單的間距 */
   width: 100%;
   flex: 1;
 }
@@ -172,8 +173,8 @@ body {
   font-weight: bold;
   color: #333;
   text-align: center;
-  margin-top: 10px;  
-  margin-bottom: 20px; 
+  margin-top: 10px;  /* 控制與上方距離 */
+  margin-bottom: 20px; /* 控制與下方距離 */
 }
 
 
@@ -196,7 +197,7 @@ body {
 }
 
 #generateBtn:hover {
-    background-color: #4dabf5;
+    background-color: #78a6e7;
     transform: scale(1.1);
 }
 
@@ -204,7 +205,7 @@ body {
   font-size: 30px;
   font-weight: bold;
   color: #333;
-  margin: 30px 0;
+  margin: 30px 0; /* 上下各 30px */
   min-height: 80px;
   display: flex;
   align-items: center;
@@ -214,7 +215,7 @@ body {
 #submitBtn {
     font-size: 24px;
     padding: 14px 24px;
-    background-color: #2257e8;
+    background-color: #2196F3;
     color: white;
     border: none;
     border-radius: 8px;
@@ -229,6 +230,7 @@ body {
   }
 
 
+/* 🎡 所有 button 共用設計 */
 .btn {
     padding: 12px 24px;
     font-size: 20px;
@@ -238,7 +240,7 @@ body {
     transition: background 0.3s, transform 0.2s ease-in-out;
   }
   
-  
+  /* hover 效果 */
   .btn:hover {
     transform: scale(1.1);
   }
@@ -260,8 +262,8 @@ body {
     cursor: pointer;
     transition: background 0.3s;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    margin-top: -10px; 
-    margin-bottom: 20px; 
+    margin-top: -10px; /* 👉 往下推 */
+    margin-bottom: 20px; /* 👉 或者推開下面元素 */
   }
 
 
@@ -286,7 +288,7 @@ body {
     transform: scale(1.1);
 }
 
-
+/* 🎯 修正「看看超瞎離職理由」的顏色 */
 .dumb-result {
     font-size: 22px;
     font-weight: bold;
@@ -294,7 +296,7 @@ body {
     margin-top: -10px;
 }
 
-
+/* 📝 輸入框 */
 textarea {
     width: 80%;
     max-width: 500px;
@@ -307,7 +309,7 @@ textarea {
     margin-top: 10px;
 }
 
-
+/* 📢 大家的離職理由區域 */
 #allReasons {
     width: 80%;
     max-width: 800px;
@@ -318,13 +320,14 @@ textarea {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-
+/* 📢 離職理由標題 */
 #reasonsTitle {
     font-size: 28px;
     color: #333;
     margin-bottom: 15px;
 }
 
+/* 📝 離職理由列表 */
 #reasonList {
     font-size: 20px;
     line-height: 1.8;
@@ -346,7 +349,7 @@ footer#footer {
   color: #333;
   font-size: 14px;
   box-sizing: border-box;
-  margin-top: 20px; 
+  margin-top: 20px; /* 這裡讓頁腳位於內容區下方 */
 }
 
 footer#footer a {
@@ -360,10 +363,11 @@ footer#footer .cc-badge {
   filter: invert(0);
 }
 .dark-mode footer#footer {
-  color: #f5f5f5; 
+  color: #f5f5f5;  /* 深色模式下，連結文字顏色變淺 */
 }
 
 
+/* 🌙 深色模式 */
 .dark-mode {
     background-color: #1e1e1e;
     color: #f5f5f5;
@@ -405,12 +409,14 @@ footer#footer .cc-badge {
     border-bottom: 1px dashed #777;
 }
 
+
+
+
 @media only screen and (max-width: 768px) {
   .content {
     width: 100%;
     padding: 20px 15px;
     box-sizing: border-box;
-    min-height: 100px;
   }
 
   footer#footer {
@@ -432,13 +438,13 @@ footer#footer .cc-badge {
     padding: 10px 12px;
     box-sizing: border-box;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
   }
 
-  .menu-center {
-    margin-top: -5px;
-  }
-
+    .menu-center {
+      margin-top: -5px;  /* 減少與上方的間距 */
+    }
+  
+  
   .right-buttons {
     display: flex;
     flex-direction: row;
@@ -482,16 +488,14 @@ footer#footer .cc-badge {
     margin-top: 10px;
     padding: 0 10px;
     line-height: 1.5;
-    transition: opacity 0.3s ease-in-out;
   }
 
   .dumb-result {
     font-size: 18px;
-    margin-top: 40px;
+    margin-top: 40px; /* 增加與 result 間距 */
     padding: 0 15px;
     color: rgb(209, 33, 33);
     line-height: 1.6;
-    min-height: 40px;
   }
 
   #submitTitle {
@@ -509,7 +513,7 @@ footer#footer .cc-badge {
   }
 
   #submitBtn {
-    width: 50%;
+    width: 100%;
     font-size: 18px;
     padding: 12px 0;
     margin-top: 10px;
@@ -539,4 +543,4 @@ footer#footer .cc-badge {
     margin-bottom: 10px;
     border-bottom: 1px dashed #ccc;
   }
-} 
+}
