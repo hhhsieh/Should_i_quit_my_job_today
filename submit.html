@@ -6,18 +6,17 @@
   <title>分享你的離職理由</title>
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/script.js" defer></script>
-
 </head>
 
 <body>
-
+  <!-- ✅ 頂部選單 -->
   <div class="top-menu">
     <div class="left-space"></div>
 
     <div class="menu-center">
       <div class="menu-group">
         <a href="index.html" class="menu-link" id="menu-gen">今天該離職了嗎？</a>
-        <a href="submit.html" class="menu-link" id="menu-submit">✍️ 分享給我們更多離職的理由</a>
+        <a href="submit.html" class="menu-link" id="menu-submit">分享給我們更多離職的理由</a>
       </div>
     </div>
 
@@ -26,16 +25,19 @@
       <button id="lang-toggle" class="lang-btn" onclick="toggleLanguage()">🇬🇧 ENG</button>
     </div>
   </div>
-
-
+  
   <div class="content">
     <h2 id="submitTitle">分享給我們你的離職理由</h2>
-    <textarea id="userReason" placeholder="請輸入你的離職理由..."></textarea><br />
-    <button id="submitBtn">提交並公開理由</button>
+    <textarea id="userReason" placeholder="請輸入你的離職理由..." rows="4" cols="50"></textarea><br />
+    <button id="submitBtn" class="submitBtn">提交理由</button>
+    <div id="allReasons">
+      <h2 id="reasonsTitle">📢 大家的離職理由</h2>
+      <ul id="reasonList"></ul>
+    </div>
   </div>
 
-  <div id="allReasons">
-    <h2 id="reasonsTitle">📢 大家的離職理由</h2>
-    <ul id="reasonList"></ul>
-  </div>
- 
+  <!-- ✅ 頁尾 -->
+  <footer id="footer"></footer>
+</body>
+</html>
+
