@@ -1,6 +1,3 @@
-/* =======================================
-   1. 全局樣式設定 (body, font, 背景等)
-======================================= */
 body {
   font-family: "Noto Sans TC", "Inter", sans-serif;
   margin: 0;
@@ -15,9 +12,7 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-/* =======================================
-   2. 頂部選單樣式 (Top Menu)
-======================================= */
+
 .top-menu {
   position: fixed;
   top: 10px;
@@ -35,104 +30,108 @@ body {
   z-index: 10;
 }
 
+
+
 .left-space {
-  justify-self: start;
+    justify-self: start;
 }
 
 .menu-center {
-  justify-self: center;
-  margin: 10px;
+    justify-self: center;
+    margin: 10px;
+  
+    
 }
 
 .right-buttons {
-  justify-self: end;
-  display: flex;
-  align-items: center;
-  gap: 20px;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .right-buttons button {
-  margin: 0;
+    margin: 0;
 }
 
-/* =======================================
-   3. 菜單按鈕樣式 (Menu Buttons)
-======================================= */
+
+.button-row {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .menu-btn {
-  display: inline-block;
-  text-align: center;
-  padding: 12px 24px;
-  font-size: 18px;
-  font-weight: bold;
-  border-radius: 8px;
-  background-color: #e1e0e0;
-  color: #333;
-  text-decoration: none;
-  transition: background 0.3s, transform 0.2s;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    text-align: center;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    background-color: #e1e0e0;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .menu-btn:hover {
-  background-color: #bbbbbb;
-  transform: scale(1.05);
+    background-color: #bbbbbb;
+    transform: scale(1.05);
 }
 
-/* =======================================
-   4. 菜單組樣式 (Menu Group)
-======================================= */
+
 .menu-group {
-  display: flex;
-  gap: 40px;
-  margin: 10 auto;
+    display: flex;
+    gap: 40px;
+    margin: 10 auto;
 }
 
 .menu-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  background-color: #e1e0e0;
-  padding: 12px 20px;
-  border-radius: 8px;
-  transition: background 0.3s;
-  min-width: 200px;
-  height: 44px;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    background-color: #e1e0e0;
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: background 0.3s;
+    min-width: 200px;
+    height: 44px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
 }
 
 .lang-active {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-weight: bold;
+  }
+  
+
+.mode-btn, .lang-btn {
+    background: #d5d5d5;
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    transition: background 0.3s, color 0.3s, transform 0.2s ease-in-out;
 }
 
-/* =======================================
-   5. 語言和模式切換按鈕樣式
-======================================= */
-.mode-btn, .lang-btn {
-  background: #d5d5d5;
-  font-size: 22px;
-  font-weight: bold;
-  color: #333;
-  cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: none;
-  transition: background 0.3s, color 0.3s, transform 0.2s ease-in-out;
-}
 
 .menu-link:hover, .mode-btn:hover, .lang-btn:hover {
-  background-color: #bbbbbb;
-  transform: scale(1.1);
+    background-color: #bbbbbb;
+    transform: scale(1.1);
 }
 
-/* =======================================
-   6. 主要內容區樣式 (Main Content)
-======================================= */
 .main-content {
   flex: 1;
   display: flex;
@@ -144,7 +143,6 @@ body {
   margin-top: 120px;
   width: 100%;
 }
-
 #title {
   font-size: 80px;
   font-weight: bold;
@@ -155,10 +153,8 @@ body {
   z-index: 5;
 }
 
-/* =======================================
-   7. 內容區樣式 (Content)
-======================================= */
-#content {
+
+.content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -167,39 +163,41 @@ body {
   box-sizing: border-box;
   margin-top: 120px;
   width: 100%;
-  min-height: 100px;
+  flex: 1;
 }
 
-/* =======================================
-   8. 按鈕樣式 (Submit, Generate, Dumb Reason)
-======================================= */
-#submitTitle, #generateBtn, #submitBtn {
+
+#submitTitle {
   font-size: 45px;
   font-weight: bold;
   color: #333;
   text-align: center;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-top: 10px;  
+  margin-bottom: 20px; 
 }
 
+
 #generateBtn {
-  background-color: #2257e8;
-  color: #fff;
-  font-size: 30px;
-  font-weight: bold;
-  width: 150px;
-  height: 64px;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #2257e8;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    width: 150px;
+    height: 64px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 #generateBtn:hover {
-  background-color: #4dabf5;
-  transform: scale(1.1);
+    background-color: #4dabf5;
+    transform: scale(1.1);
 }
 
 #result {
@@ -211,123 +209,136 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.3s ease-in-out;
 }
 
 #submitBtn {
-  font-size: 24px;
-  padding: 14px 24px;
-  background-color: #2257e8;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 0px;
-  transition: background-color 0.3s ease, transform 0.2s ease-in-out;
-}
+    font-size: 24px;
+    padding: 14px 24px;
+    background-color: #2257e8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 0px;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+  }
+  
+  #submitBtn:hover {
+    background-color: #4dabf5;
+    transform: scale(1.05);
+  }
 
-#submitBtn:hover {
-  background-color: #4dabf5;
-  transform: scale(1.05);
-}
 
-/* Dumb Reason Button */
+.btn {
+    padding: 12px 24px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    transition: background 0.3s, transform 0.2s ease-in-out;
+  }
+  
+  
+  .btn:hover {
+    transform: scale(1.1);
+  }
+  
+  textarea {
+      width: 100%;
+      height: 100px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
 #dumbReasonBtn {
-  background-color: #2257e8;
-  color: #fff;
-  font-size: 28px;
-  font-weight: bold;
-  padding: 24px 24px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: -10px;
-  margin-bottom: 20px;
-  display: none;
-}
+    background-color: #2257e8;
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 24px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-top: -10px; 
+    margin-bottom: 20px; 
+  }
 
-/* Restart Button */
+
 #restartBtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  border-radius: 8px;
-  cursor: pointer;
-  display: none;
-  margin-top: -50px;
-  position: relative;
-  top: 60px;
-  transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;        
+    outline: none; 
+    border-radius: 8px;
+    cursor: pointer;
+    display: none;
+    margin-top: -50px;
+    position: relative;
+    top: 60px;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
 }
 
 #restartBtn:hover {
-  background-color: #45a049;
-  transform: scale(1.1);
+    background-color: #45a049;
+    transform: scale(1.1);
 }
 
-/* =======================================
-   9. 文本框和列表樣式 (Textarea, Dumb Result)
-======================================= */
-textarea {
-  width: 80%;
-  max-width: 500px;
-  height: 150px;
-  font-size: 16px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  resize: none;
-  margin-top: 10px;
-}
 
 .dumb-result {
-  font-size: 22px;
-  font-weight: bold;
-  color: rgb(209, 33, 33);
-  margin-top: -10px;
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(209, 33, 33);
+    margin-top: -10px;
 }
 
-/* =======================================
-   10. 原因區域樣式 (All Reasons)
-======================================= */
-#allReasons {
-  width: 80%;
-  max-width: 800px;
-  margin: 30px auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+textarea {
+    width: 80%;
+    max-width: 500px;
+    height: 150px;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    margin-top: 10px;
 }
+
+
+#allReasons {
+    width: 80%;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 
 #reasonsTitle {
-  font-size: 28px;
-  color: #333;
-  margin-bottom: 15px;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 15px;
 }
 
 #reasonList {
-  font-size: 20px;
-  line-height: 1.8;
-  text-align: left;
-  padding-left: 20px;
-  list-style-type: "👉 ";
+    font-size: 20px;
+    line-height: 1.8;
+    text-align: left;
+    padding-left: 20px;
+    list-style-type: "👉 ";
 }
 
 #reasonList li {
-  margin-bottom: 10px;
-  padding-bottom: 8px;
-  border-bottom: 1px dashed #ddd;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #ddd;
 }
 
-/* =======================================
-   11. 頁腳樣式 (Footer)
-======================================= */
 footer#footer {
   width: 100%;
   padding: 20px;
@@ -335,7 +346,7 @@ footer#footer {
   color: #333;
   font-size: 14px;
   box-sizing: border-box;
-  margin-top: 20px;
+  margin-top: 20px; 
 }
 
 footer#footer a {
@@ -348,41 +359,38 @@ footer#footer .cc-badge {
   height: 24px;
   filter: invert(0);
 }
-
 .dark-mode footer#footer {
-  color: #f5f5f5;
+  color: #f5f5f5; 
 }
 
-/* =======================================
-   12. 黑暗模式樣式 (Dark Mode)
-======================================= */
+
 .dark-mode {
-  background-color: #1e1e1e;
-  color: #f5f5f5;
+    background-color: #1e1e1e;
+    color: #f5f5f5;
 }
 
 .dark-mode .top-menu {
-  background: rgba(40, 40, 40, 0.9);
+    background: rgba(40, 40, 40, 0.9);
 }
 
 .dark-mode .menu-link,
 .dark-mode .mode-btn,
 .dark-mode .lang-btn {
-  background-color: #444;
-  color: #f5f5f5;
+    background-color: #444;
+    color: #f5f5f5;
 }
 
 .dark-mode textarea {
-  background-color: #2e2e2e;
-  color: #f5f5f5;
-  border: 1px solid #777;
+    background-color: #2e2e2e;
+    color: #f5f5f5;
+    border: 1px solid #777;
 }
 
 .dark-mode #allReasons {
-  background-color: #292929;
-  color: #f5f5f5;
-  border: 1px solid #444;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    background-color: #292929;
+    color: #f5f5f5;
+    border: 1px solid #444;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
 
 .dark-mode #title,
@@ -390,16 +398,13 @@ footer#footer .cc-badge {
 .dark-mode #result,
 .dark-mode #reasonList,
 .dark-mode #submitTitle {
-  color: #f5f5f5;
+    color: #f5f5f5;
 }
 
 .dark-mode #reasonList li {
-  border-bottom: 1px dashed #777;
+    border-bottom: 1px dashed #777;
 }
 
-/* =======================================
-   13. 響應式設計 (Responsive Design)
-======================================= */
 @media only screen and (max-width: 768px) {
   .content {
     width: 100%;
@@ -407,7 +412,7 @@ footer#footer .cc-badge {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: center; /* 確保內容居中 */
+    align-items: center; 
   }
 
   footer#footer {
@@ -470,19 +475,18 @@ footer#footer .cc-badge {
     font-size: 32px;
     margin-top: 20px;
     line-height: 1.3;
-    transition: font-size 0.3s ease; /* 避免跳動 */
+    transition: font-size 0.3s ease; 
   }
 
   #result {
     font-size: 22px;
     min-height: 60px;
     margin-top: 10px;
-    padding: 10px; /* 統一 padding，避免跳動 */
+    padding: 10px;
     line-height: 1.5;
     display: flex;
-    justify-content: center; /* 確保結果居中 */
-    align-items: center; /* 確保內容垂直居中 */
-    transition: opacity 0.3s ease-in-out;
+    justify-content: center; 
+    align-items: center; 
   }
 
   .dumb-result {
@@ -491,14 +495,16 @@ footer#footer .cc-badge {
     padding: 0 15px;
     color: rgb(209, 33, 33);
     line-height: 1.6;
-    min-height: 50px; /* 統一最小高度，減少跳動 */
+    min-height: 50px;
   }
 
   #submitTitle {
     font-size: 24px;
     text-align: center;
-    margin-bottom: 15px;
+    padding: 40px 15px;
+    margin-bottom: -30px;
   }
+
 
   textarea {
     width: 100%;
@@ -506,14 +512,14 @@ footer#footer .cc-badge {
     padding: 10px;
     box-sizing: border-box;
     height: 150px;
-    resize: none; /* 禁用大小調整，避免視覺上的跳動 */
+    resize: none;
   }
 
   #submitBtn {
     width: 50%;
     font-size: 18px;
     padding: 12px 0;
-    margin-top: 10px;
+    margin-top: -10px;
   }
 
   #allReasons {
@@ -540,5 +546,7 @@ footer#footer .cc-badge {
     margin-bottom: 10px;
     border-bottom: 1px dashed #ccc;
   }
+  #userReason {
+    margin-top: 0px;
+  }
 }
-
