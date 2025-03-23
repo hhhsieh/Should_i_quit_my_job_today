@@ -406,7 +406,7 @@ footer#footer .cc-badge {
 }
 @media only screen and (max-width: 768px) {
   .main-content {
-    margin-top: 160px; 
+    margin-top: 165px; 
     padding: 20px 15px;
     box-sizing: border-box;
     display: flex;
@@ -436,10 +436,10 @@ footer#footer .cc-badge {
     padding: 10px 12px;
     box-sizing: border-box;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    position: fixed; /* 修改為 fixed，保持在頁面頂部 */
-    top: 0; /* 讓它固定在頂部 */
+    position: fixed;
+    top: 0;
     left: 50%;
-    transform: translateX(-50%); /* 保持水平居中 */
+    transform: translateX(-50%);
   }
 
   .menu-center {
