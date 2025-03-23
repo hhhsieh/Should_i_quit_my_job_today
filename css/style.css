@@ -415,6 +415,7 @@ footer#footer .cc-badge {
     width: 100%;
     min-height: 100px;
     padding: 20px 15px;
+    margin-top: 50px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
