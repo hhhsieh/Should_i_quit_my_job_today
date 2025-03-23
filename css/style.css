@@ -415,11 +415,15 @@ footer#footer .cc-badge {
     width: 100%;
     min-height: 100px;
     padding: 20px 15px;
-    margin-top: 180px;
+    margin-top: 80px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+  }
+  .main-content {
+    margin-top: 60px; /* 小螢幕上可縮小頂部間距 */
+    padding: 15px 10px; /* 小螢幕上縮小內邊距 */
   }
   
 
