@@ -278,14 +278,14 @@ function updateLanguage() {
 
   if (document.getElementById("generateBtn")) {
     document.getElementById("generateBtn").innerText =
-      currentLanguage === "zh" ? "開始！" : "START!";
+      currentLanguage === "zh" ? "快點幫我決定！" : "Let’s go!";
   }
 
   if (document.getElementById("result")) {
     document.getElementById("result").innerText =
       currentLanguage === "zh"
         ? " 機會＆命運？ "
-        : "Click it. You’ve made worse decisions anyway.";
+        : "Click it!  You’ve definitely made worse decisions anyway. 🤷";
   }
 
   if (document.getElementById("dumbReasonBtn")) {
