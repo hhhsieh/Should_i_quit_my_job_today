@@ -285,7 +285,7 @@ function updateLanguage() {
     document.getElementById("result").innerText =
       currentLanguage === "zh"
         ? " 機會＆命運？ "
-        : "Quit or stay? Let chaos decide!";
+        : "Click it. You’ve made worse decisions anyway.";
   }
 
   if (document.getElementById("dumbReasonBtn")) {
