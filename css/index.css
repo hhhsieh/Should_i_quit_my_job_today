@@ -22,7 +22,7 @@ html, body {
   width: 100%;
   max-width: 340px;
   min-height: 360px;
-  margin: auto;
+  margin: 10px auto;
   padding: 20px;
   background: #a4a4a4;
   border-radius: 20px;
