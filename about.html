@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="titleAbout">關於本站｜今天該離職了嗎？</title>
+  <!-- 像素字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/about.css" />
+  <!-- 多語系檔 -->
+  <script defer src="js/language.js"></script>
+  <!-- about 邏輯（保留漢堡／語言切換） -->
+  <script defer src="js/about.js"></script>
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="site-header">
+      <button id="hamburger-menu-btn" class="hamburger-menu-btn" aria-label="開啟主選單">☰</button>
+      <div class="lang-wrapper">
+        <button id="lang-toggle-btn" class="lang-btn" aria-label="切換語言">🌐</button>
+        <ul id="lang-options" class="hidden">
+          <li data-lang="zh-TW">繁體中文</li>
+          <li data-lang="en">English</li>
+        </ul>
+      </div>
+      <nav id="hamburger-menu-list" class="hamburger-menu-list">
+        <ul>
+          <li><a href="index.html" data-i18n="navHome">💭 離職嗎？</a></li>
+          <li><a href="ranking.html" data-i18n="navRanking">🏆 排行榜</a></li>
+          <li><a href="about.html" data-i18n="navAbout">ℹ️ 關於</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="about-container">
+      <section class="about-letter">
+        <p class="letter-meta" data-i18n="letterMeta">To：所有坐在辦公桌前想離職的你</p>
+        <h1 class="letter-title" data-i18n="letterTitle">「今天該離職了嗎？」</h1>
+
+        <p data-i18n="aboutP1"></p>
+        <p data-i18n="aboutP2"></p>
+        <p data-i18n="aboutP3"></p>
+        <p data-i18n="aboutP4"></p>
+        <p data-i18n="aboutP5"></p>
+
+        <p class="letter-sign" data-i18n="letterSign"></p>
+      </section>
+    </div>
+
+    <footer id="footer">
+      <p data-i18n="footer">© 2025 今天該離職了嗎？｜<a href="about.html" data-i18n="navAbout">關於本站</a></p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,402 @@
+html, body {
+  height: 100%;
+  margin: 0; padding: 0;
+  font-family: 'Press Start 2P', monospace;
+  background: #c2c2c2; color: #111;
+  text-align: center;
+}
+.page-wrapper {
+  display: flex; flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ===== site-header：只排版，不帶背景/邊框/陰影 ===== */
+.site-header {
+  position: relative;
+  width: 95%;         /* 跟 GameBoy 一樣寬 */
+  margin: 20px auto 20px auto;  /* 上間距 40px，水平置中 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;         /* 視按鈕大小調整 */
+}
+
+
+/* 語言按鈕 */
+.site-header .lang-btn {
+  background: #333; color: #fff;
+  border: 2px solid #000;
+  padding: 8px 12px;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  position: static;
+}
+
+/* 語言下拉選單 */
+.site-header #lang-options {
+  display: none;
+  position: absolute;
+  top: 100%;           /* 緊貼 header 底部 */
+  right: 0;
+  background: #fff;
+  border: 2px solid #333;
+  border-radius: 6px;
+  width: 160px;
+  list-style: none;
+  margin: 0; padding: 0;
+  box-shadow: 0 0 0 3px #666;
+  font-size: 14px;
+  z-index: 10;
+}
+.site-header #lang-options.show {
+  display: block;
+}
+.site-header #lang-options li {
+  padding: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+.site-header #lang-options li:hover {
+  background: #ddd;
+}
+
+/* 漢堡按鈕 */
+.site-header .hamburger-menu-btn {
+  background: #333; color: #fff;
+  border: 2px solid #000;
+  padding: 8px 12px;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  position: static;     /* 由 flex 決定位置 */
+}
+/* ===== 漢堡選單 ===== */
+.site-header #hamburger-menu-list {
+  display: none;
+  position: absolute;
+  top: 100%;    /* 緊貼 header 底部 */
+  left: 0;
+  font-size: 14px;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 6px;
+  padding: 8px 12px;
+  width: 160px;
+  z-index: 10;
+  flex-direction: column;
+  box-shadow: 0 0 0 3px #666;
+  text-align: left;
+}
+/* 加上 .show 就顯示 */
+.site-header #hamburger-menu-list.show {
+  display: flex;
+}
+/* 加上 .hidden 就隱藏（如果你同時在用 hidden） */
+.site-header #hamburger-menu-list.hidden {
+  display: none !important;
+}
+
+/* list 重置 */
+.site-header #hamburger-menu-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.site-header #hamburger-menu-list li {
+  border-top: 1px solid #aaa;
+}
+.site-header #hamburger-menu-list li:first-child {
+  border-top: none;
+}
+.site-header #hamburger-menu-list a {
+  display: block;
+  padding: 8px 0;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+}
+.site-header #hamburger-menu-list a:hover {
+  background: #eee;
+}
+
+.site-main {
+  flex: 1;
+  margin: 30px auto 30 auto;   /* 若要再往下推，可微調 */
+  padding: 0 20px;
+  text-align: center;
+}
+/* ===== 排行榜標題 ===== */
+.ranking-title {
+  display: inline-block;
+  margin: 0px auto 20px;
+  font-size: 30px;
+  background: #dcdcdc;
+  padding: 8px 12px;
+  border: 2px solid #444;
+  text-align: center;
+}
+
+/* ===== 控制列（時間分類 + 排序） ===== */
+.ranking-controls,
+.comment-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+/* 本日 / 本週 / 全部 的按鈕樣式 */
+.range-tabs .range-tab {
+  background: #333;
+  color: #fff;
+  border: 2px solid #000;
+  padding: 6px 12px;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.range-tabs .range-tab.active,
+.range-tabs .range-tab:hover {
+  background: #555;
+}
+
+/* ===== 排序下拉樣式（保持不變） ===== */
+.sort-dropdown { position: relative; display: inline-block; }
+
+.sort-btn {
+  background: #333;
+  color: #fff;
+  border: 2px solid #000;
+  padding: 6px 12px;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sort-btn .chevron { transition: transform .2s; }
+.sort-dropdown.open .chevron { transform: rotate(180deg); }
+
+.sort-options {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  background: #dcdcdc;
+  border: 2px solid #333;
+  border-radius: 6px;
+  list-style: none;
+  padding: 4px 0;
+  margin: 0;
+  width: 140px;
+  transform-origin: top center;
+}
+
+.sort-options li {
+  padding: 6px 12px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.sort-options li:hover {
+  background: #333;
+  color: #fff;
+}
+
+.sort-dropdown.open .sort-options {
+  display: block;
+}
+
+/* ===== 排行榜卡片列表 ===== */
+#ranking-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.ranking-item {
+  background: #a4a4a4;
+  border: 2px solid #666;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.ranking-item:hover {
+  box-shadow: 5px 5px 0 #333;
+}
+.reason {
+  font-size: 10px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+.vote-area {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+}
+.plus-one-btn {
+  background: #333;
+  color: #fff;
+  border: 2px solid #000;
+  padding: 4px 8px;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.plus-one-btn:hover {
+  background: #555;
+}
+.plus-one-btn.voted {
+  background: #999;
+  color: #444;
+  cursor: default;
+}
+
+/* ===== 留言板容器 ===== */
+#comments-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem; 
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 16px;
+  flex-direction: column; /* 由上而下排列 */
+  
+}
+
+/* ===== 便條紙卡片風格 ===== */
+.comment-card {
+  background: #fff8dc;
+  border: 2px dashed #444;
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 10px;
+  line-height: 1.4;
+  position: relative;
+  box-shadow: 4px 4px 0 #666;
+  transform: rotate(-1deg);
+}
+.comment-card:nth-child(even) {
+  transform: rotate(1deg);
+}
+.comment-card::before {
+  content: '';
+  position: absolute;
+  top: -6px; left: 50%;
+  width: 12px; height: 12px;
+  background: #e07a5f;
+  border-radius: 50%;
+  border: 2px solid #333;
+  transform: translateX(-50%);
+  box-shadow: 1px 1px 0 #333;
+}
+.comment-text {
+  margin-bottom: 8px;
+  color: #111;
+}
+.comment-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  color: #555;
+}
+.comment-footer span {
+  padding-top: 4px;
+}
+
+/* ===== 浮動投稿按鈕 ===== */
+#open-submit,
+.floating-post-btn {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  background: #333;
+  color: #fff;
+  border: 2px solid #000;
+  border-radius: 8px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* ===== 投稿 Modal ===== */
+#submit-modal.modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.4);
+  z-index: 1000;
+}
+#submit-modal.modal:not(.hidden) {
+  display: flex;
+}
+.modal-backdrop,
+#submit-backdrop {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+}
+.modal-content {
+  position: relative;
+  background: #dcdcdc;
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 12px;
+  width: 280px;
+  font-size: 10px;
+  z-index: 1;
+}
+.modal-content h2 {
+  margin: 0 0 8px;
+  font-size: 12px;
+}
+#reason-input {
+  width: 90%;
+  height: 80px;
+  padding: 4px;
+  font-family: 'Press Start 2P', monospace;
+  border: 2px solid #444;
+  border-radius: 4px;
+  resize: vertical;
+  margin-bottom: 12px;
+}
+#submit-reason,
+#cancel-submit {
+  background: #333;
+  color: #fff;
+  border: 2px solid #000;
+  padding: 4px 8px;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-left: 8px;
+}
+#submit-reason:hover,
+#cancel-submit:hover {
+  background: #555;
+}
+
+/* ===== 吸底 Footer ===== */
+#footer {
+  padding: 10px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.6;
+}
+

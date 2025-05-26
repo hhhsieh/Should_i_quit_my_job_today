@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="titleRanking">大家的離職理由｜今天該離職了嗎？</title>
+
+  <!-- 像素風格字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+
+  <!-- 排行榜專屬樣式 -->
+  <link rel="stylesheet" href="css/ranking.css" />
+
+<!-- Firebase SDK：放第一 -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<!-- Firebase 初始化：不能 defer -->
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyCIwfAbnhBj7g-dhblbN5XJ0fwEYebxg2I",
+    authDomain: "quit-reasons.firebaseapp.com",
+    projectId: "quit-reasons",
+    storageBucket: "quit-reasons.firebasestorage.app",
+    messagingSenderId: "692551325051",
+    appId: "1:692551325051:web:60ff6a63b83c2961cc59de",
+    measurementId: "G-5SRKFNRT1N"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<!-- 語系檔案 -->
+<script defer src="js/language.js"></script>
+
+<!-- 排行榜邏輯（最晚執行） -->
+<script defer src="js/ranking.js"></script>
+
+</head>
+
+<body>
+  <div class="page-wrapper">
+
+    <!-- ===== site-header：漢堡 + 語言 + 選單 ===== -->
+    <div class="site-header">
+      <button id="hamburger-menu-btn" class="hamburger-menu-btn" aria-label="開啟主選單">☰</button>
+      <div class="lang-wrapper">
+        <button id="lang-toggle-btn" class="lang-btn" aria-label="切換語言">🌐</button>
+        <ul id="lang-options" class="hidden">
+          <li data-lang="zh-TW">繁體中文</li>
+          <li data-lang="en">English</li>
+        </ul>
+      </div>
+      <nav id="hamburger-menu-list" class="hamburger-menu-list">
+        <ul>
+          <li><a href="index.html" data-i18n="navHome">💭 離職嗎？</a></li>
+          <li><a href="ranking.html" data-i18n="navRanking">🏆 排行榜</a></li>
+          <li><a href="about.html" data-i18n="navAbout">ℹ️ 關於</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- ===== site-main：排行榜 + 留言板 + 投稿 ===== -->
+    <div class="site-main main-content">
+      <h1 class="ranking-title" data-i18n="titleRanking">今天想離職的理由</h1>
+
+      <!-- 控制列：語系切換 + 排序 -->
+      <div class="ranking-controls">
+        <div class="range-tabs">
+          <button class="range-tab active" data-range="day" data-i18n="rangeToday">本日</button>
+          <button class="range-tab" data-range="week" data-i18n="rangeWeek">本週</button>
+          <button class="range-tab" data-range="all" data-i18n="rangeAll">全部</button>
+        </div>
+        <div class="sort-dropdown">
+          <button class="sort-btn" data-i18n="sortPopular">🔥 最多＋ <span class="chevron">▾</span></button>
+          <ul class="sort-options">
+            <li data-sort="popular" data-i18n="sortPopular">🔥 最多＋</li>
+            <li data-sort="latest" data-i18n="sortLatest">🆕 最新</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 排行榜列表 -->
+      <div id="ranking-list">
+        <!-- 留言板列表 -->
+        <li id="comments-container"> </li>
+      </div>
+
+      <!-- 浮動投稿按鈕 -->
+      <button id="open-submit" class="floating-post-btn" title="我要投稿" data-i18n="btnSubmit">✏️</button>
+
+      <!-- 投稿 Modal -->
+      <section id="submit-modal" class="modal hidden">
+        <div id="submit-backdrop" class="modal-backdrop"></div>
+        <div class="modal-content">
+          <h2 data-i18n="modalTitle">寫下你的離職理由：</h2>
+          <textarea id="reason-input" maxlength="90" placeholder="請輸入離職理由（最多 60 字）"data-i18n="modalPlaceholder"></textarea>
+          <div id="char-count">0 / 60</div>
+
+          <div class="modal-actions">
+            <button id="submit-reason" data-i18n="btnSend">送出</button>
+            <button id="cancel-submit" data-i18n="btnCancel">取消</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===== site-footer：吸底 Footer ===== -->
+    <footer id="footer">
+      <p data-i18n="footer">© 2025 今天該離職了嗎？｜<a href="about.html" data-i18n="navAbout">關於本站</a></p>
+    </footer>
+
+  </div>
+</body>
+</html>

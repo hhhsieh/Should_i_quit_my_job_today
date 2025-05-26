@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="title">今天該離職了嗎？</title>
+
+  <!-- 像素風字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"/>
+  <link  href="https://cdn.jsdelivr.net/npm/zpix-pixel-font@1.2.0/zpix.css" rel="stylesheet">
+  <!-- 主樣式 -->
+  <link rel="stylesheet" href="css/index.css"/>
+
+  <!-- 多語系共用檔（先載入） -->
+  <script defer src="js/language.js"></script>
+  <!-- 主要遊戲邏輯檔 -->
+  <script defer src="js/index.js"></script>
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- ===== site-header：漢堡 + 語言 + 選單 ===== -->
+    <div class="site-header">
+      <!-- 漢堡按鈕 -->
+      <button id="hamburger-menu-btn" class="hamburger-menu-btn" aria-label="開啟主選單">☰</button>
+      <!-- 語言切換 -->
+      <div class="lang-wrapper">
+        <button id="lang-toggle-btn" class="lang-btn" aria-label="切換語言">🌐</button>
+        <ul id="lang-options" class="hidden">
+          <li data-lang="zh-TW">繁體中文</li>
+          <li data-lang="en">English</li>
+        </ul>
+      </div>
+      <!-- 漢堡選單 -->
+      <nav id="hamburger-menu-list" class="hamburger-menu-list">
+        <ul>
+          <li><a href="index.html" data-i18n="navHome">💭 離職嗎？</a></li>
+          <li><a href="ranking.html" data-i18n="navRanking">🏆 排行榜</a></li>
+          <li><a href="about.html" data-i18n="navAbout">ℹ️ 關於</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- ===== site-main：GameBoy 主內容 ===== -->
+    <div class="site-main main-content">
+      <div class="gameboy">
+        <h1 id="title" data-i18n="title">今天該離職了嗎？</h1>
+        <div class="screen" id="screen">
+          <div class="slot"><div class="slot-inner" id="slot1"><div class="slot-item">?</div></div></div>
+          <div class="slot"><div class="slot-inner" id="slot2"><div class="slot-item">?</div></div></div>
+          <div class="slot"><div class="slot-inner" id="slot3"><div class="slot-item">?</div></div></div>
+        </div>
+        <button class="start-btn" id="toggle-btn" data-i18n="startBtn">START</button>
+        <div id="result-msg"></div>
+      </div>
+    </div>
+
+    <!-- ===== site-footer：吸底 Footer ===== -->
+    <footer id="footer">
+      <p data-i18n="footer">© 2025 今天該離職了嗎？歡迎分享網址，但禁止未經授權的內容重製或商業使用。</p>
+    </footer>
+
+  </div>
+</body>
+</html>
