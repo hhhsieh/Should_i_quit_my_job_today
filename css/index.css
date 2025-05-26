@@ -22,7 +22,7 @@ html, body {
   width: 100%;
   max-width: 340px;
   min-height: 360px;
-  margin: 0 auto;
+  margin: auto;
   padding: 20px;
   background: #a4a4a4;
   border-radius: 20px;
@@ -30,6 +30,7 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 /* ===== site-header：只排版，不帶背景/邊框/陰影 ===== */
@@ -131,7 +132,9 @@ html, body {
 /* ===== site-main：GameBoy 區塊 ===== */
 .site-main {
   flex: 1;
-  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0 20px;
   text-align: center;
 }
