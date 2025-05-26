@@ -1,10 +1,12 @@
+/* 預設字體：正常人看的 */
 html, body {
   height: 100%;
   margin: 0; padding: 0;
-  font-family: 'Press Start 2P', monospace;
+  font-family: 'Noto Sans TC', sans-serif;
   background: #c2c2c2; color: #111;
   text-align: center;
 }
+
 .page-wrapper {
   display: flex; flex-direction: column;
   min-height: 100vh;
@@ -13,16 +15,14 @@ html, body {
 /* ===== site-header：只排版，不帶背景/邊框/陰影 ===== */
 .site-header {
   position: relative;
-  width: 95%;         /* 跟 GameBoy 一樣寬 */
-  margin: 20px auto 20px auto;  /* 上間距 40px，水平置中 */
+  width: 95%;
+  margin: 20px auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 56px;         /* 視按鈕大小調整 */
+  height: 56px;
 }
 
-
-/* 語言按鈕 */
 .site-header .lang-btn {
   background: #333; color: #fff;
   border: 2px solid #000;
@@ -31,13 +31,13 @@ html, body {
   border-radius: 6px;
   cursor: pointer;
   position: static;
+  font-family: 'Press Start 2P', monospace;
 }
 
-/* 語言下拉選單 */
 .site-header #lang-options {
   display: none;
   position: absolute;
-  top: 100%;           /* 緊貼 header 底部 */
+  top: 100%;
   right: 0;
   background: #fff;
   border: 2px solid #333;
@@ -48,6 +48,7 @@ html, body {
   box-shadow: 0 0 0 3px #666;
   font-size: 14px;
   z-index: 10;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 .site-header #lang-options.show {
   display: block;
@@ -61,7 +62,6 @@ html, body {
   background: #ddd;
 }
 
-/* 漢堡按鈕 */
 .site-header .hamburger-menu-btn {
   background: #333; color: #fff;
   border: 2px solid #000;
@@ -69,13 +69,14 @@ html, body {
   font-size: 18px;
   border-radius: 6px;
   cursor: pointer;
-  position: static;     /* 由 flex 決定位置 */
+  position: static;
+  font-family: 'Press Start 2P', monospace;
 }
-/* ===== 漢堡選單 ===== */
+
 .site-header #hamburger-menu-list {
   display: none;
   position: absolute;
-  top: 100%;    /* 緊貼 header 底部 */
+  top: 100%;
   left: 0;
   font-size: 14px;
   background: #fff;
@@ -88,16 +89,13 @@ html, body {
   box-shadow: 0 0 0 3px #666;
   text-align: left;
 }
-/* 加上 .show 就顯示 */
 .site-header #hamburger-menu-list.show {
   display: flex;
 }
-/* 加上 .hidden 就隱藏（如果你同時在用 hidden） */
 .site-header #hamburger-menu-list.hidden {
   display: none !important;
 }
 
-/* list 重置 */
 .site-header #hamburger-menu-list ul {
   list-style: none;
   margin: 0;
@@ -112,7 +110,7 @@ html, body {
 .site-header #hamburger-menu-list a {
   display: block;
   padding: 8px 0;
-  font-family: 'Press Start 2P', monospace;
+  font-family: inherit;
   font-size: 14px;
   color: #333;
   text-decoration: none;
@@ -121,22 +119,77 @@ html, body {
   background: #eee;
 }
 
-/* ===== About 頁面整合樣式（像素風格） ===== */
+.site-main {
+  flex: 1;
+  margin: 30px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.ranking-title {
+  display: inline-block;
+  margin: 0px auto 20px;
+  font-size: 30px;
+  background: #dcdcdc;
+  padding: 8px 12px;
+  border: 2px solid #444;
+  text-align: center;
+  font-family: 'Press Start 2P', monospace;
+}
+
+.ranking-controls,
+.comment-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0;
+  font-family: 'Press Start 2P', monospace;
+}
+
+.char-count {
+  margin-right: 8px;
+}
+
+#open-submit,
+.floating-post-btn {
+  margin-left: 8px;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  background: #333;
+  color: #fff;
+  border: 2px solid #000;
+  border-radius: 8px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  font-family: 'Press Start 2P', monospace;
+}
+
+/* ===== About 頁面整合樣式（響應式設計） ===== */
 .about-container {
-  max-width: 800px;
-  margin: 40px auto;
+  max-width: 100%;
+  width: 90%;
+  margin: 0px auto;
   padding: 20px;
   background: #a4a4a4;
   border: 4px solid #666;
   border-radius: 12px;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 12px;
-  line-height: 1.6;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
   color: #111;
+  box-sizing: border-box;
 }
 
 .about-container h1 {
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 16px;
   text-align: center;
   background: #dcdcdc;
@@ -147,7 +200,7 @@ html, body {
 
 .about-container h2 {
   margin-top: 24px;
-  font-size: 14px;
+  font-size: 18px;
   color: #333;
   border-bottom: 2px solid #444;
   padding-bottom: 4px;
@@ -166,35 +219,36 @@ html, body {
   color: #d35050;
 }
 
-/* ===== 信件區塊（about-letter） ===== */
 .about-letter {
-  max-width: 700px;
-  margin: 40px auto;
+  max-width: 100%;
+  width: 95%;
+  margin: 0px auto;
   padding: 20px;
   background-color: #f5f5f5;
   border: 4px solid #666;
   border-radius: 12px;
   box-shadow: 5px 5px 0 #333;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 12px;
-  line-height: 1.6;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
   color: #111;
+  box-sizing: border-box;
 }
 
 .about-letter .letter-meta {
-  font-size: 10px;
+  font-size: 12px;
   color: #999;
   margin-bottom: 12px;
 }
 
 .about-letter .letter-title {
-  font-size: 14px;
+  font-size: 16px;
   margin-bottom: 16px;
 }
 
 .about-letter .letter-sign {
   margin-top: 20px;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .about-letter a {
@@ -206,10 +260,10 @@ html, body {
   text-decoration: underline;
 }
 
-/* ===== Footer 吸底樣式 ===== */
 #footer {
   padding: 10px;
   font-size: 12px;
   text-align: center;
   line-height: 1.6;
+  font-family: 'Noto Sans TC', sans-serif;
 }
