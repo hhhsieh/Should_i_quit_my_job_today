@@ -67,26 +67,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ─── 四、排序選項（最多/最新）───
-  sortBtn       = document.querySelector('.sort-btn');
-  sortContainer = sortBtn?.parentElement;
-  sortOptions   = document.querySelectorAll('.sort-options li');
+// ─── 四、排序選項（最多/最新）───
+sortBtn       = document.querySelector('.sort-btn');
+sortContainer = sortBtn?.parentElement;
+sortOptions   = document.querySelectorAll('.sort-options li');
 
-  sortBtn?.addEventListener('click', e => {
+// 點擊排序按鈕：打開或關閉選單
+sortBtn?.addEventListener('click', e => {
+  e.stopPropagation(); // 防止事件冒泡到 document
+  sortContainer?.classList.toggle('open');
+});
+
+// 點擊排序區塊本身不關閉（例如選單上方）
+sortContainer?.addEventListener('click', e => e.stopPropagation());
+
+// 點擊任一選項後：套用排序、關閉選單
+sortOptions.forEach(li => {
+  li.addEventListener('click', e => {
     e.stopPropagation();
-    sortContainer.classList.toggle('open');
+    currentSort = li.dataset.sort;
+    sortBtn.firstChild.nodeValue = li.textContent + ' ';
+    sortContainer?.classList.remove('open');
+    fetchReasonsAndRender();
   });
-  sortContainer?.addEventListener('click', e => e.stopPropagation());
+});
 
-  sortOptions.forEach(li => {
-    li.addEventListener('click', e => {
-      e.stopPropagation();
-      currentSort = li.dataset.sort;
-      sortBtn.firstChild.nodeValue = li.textContent + ' ';
-      sortContainer.classList.remove('open');
-      fetchReasonsAndRender();
-    });
-  });
+// 點擊頁面其他地方就關閉排序選單
+document.addEventListener('click', () => {
+  sortContainer?.classList.remove('open');
+});
+
+
 
   // ─── 五、開啟「投稿 Modal」時，預設 textarea maxlength & 字數顯示───
   openBtn?.addEventListener('click', e => {
