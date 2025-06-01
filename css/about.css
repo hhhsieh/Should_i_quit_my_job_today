@@ -8,11 +8,14 @@ html, body {
 }
 
 .page-wrapper {
-  display: flex; flex-direction: column;
+  display: flex; 
+  flex-direction: column;
   min-height: 100vh;
+  position: relative;
+  
 }
 
-/* ===== site-header：只排版，不帶背景/邊框/陰影 ===== */
+/*===== site-header：只排版，不帶背景/邊框/陰影 ===== */
 .site-header {
   position: relative;
   width: 95%;
@@ -21,160 +24,131 @@ html, body {
   justify-content: space-between;
   align-items: center;
   height: 56px;
+  
 }
 
-.site-header .lang-btn {
+/* ===== 側邊滑出選單 ===== */
+.hamburger-menu-btn{
   background: #333; color: #fff;
   border: 2px solid #000;
   padding: 8px 12px;
   font-size: 18px;
   border-radius: 6px;
-  cursor: pointer;
-  position: static;
-  font-family: 'Press Start 2P', monospace;
-}
+  }
 
-.site-header #lang-options {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: #fff;
-  border: 2px solid #333;
-  border-radius: 6px;
-  width: 160px;
-  list-style: none;
-  margin: 0; padding: 0;
-  box-shadow: 0 0 0 3px #666;
-  font-size: 14px;
-  z-index: 10;
-  font-family: 'Noto Sans TC', sans-serif;
-}
-.site-header #lang-options.show {
-  display: block;
-}
-.site-header #lang-options li {
-  padding: 12px;
-  text-align: left;
-  cursor: pointer;
-}
-.site-header #lang-options li:hover {
-  background: #ddd;
-}
-
-.site-header .hamburger-menu-btn {
-  background: #333; color: #fff;
-  border: 2px solid #000;
-  padding: 8px 12px;
-  font-size: 18px;
-  border-radius: 6px;
-  cursor: pointer;
-  position: static;
-  font-family: 'Press Start 2P', monospace;
-}
-
-.site-header #hamburger-menu-list {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  font-size: 14px;
-  background: #fff;
-  border: 2px solid #000;
-  border-radius: 6px;
-  padding: 8px 12px;
-  width: 160px;
-  z-index: 10;
-  flex-direction: column;
-  box-shadow: 0 0 0 3px #666;
-  text-align: left;
-}
-.site-header #hamburger-menu-list.show {
-  display: flex;
-}
-.site-header #hamburger-menu-list.hidden {
-  display: none !important;
-}
-
-.site-header #hamburger-menu-list ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.site-header #hamburger-menu-list li {
-  border-top: 1px solid #aaa;
-}
-.site-header #hamburger-menu-list li:first-child {
-  border-top: none;
-}
-.site-header #hamburger-menu-list a {
-  display: block;
-  padding: 8px 0;
-  font-family: inherit;
-  font-size: 14px;
-  color: #333;
-  text-decoration: none;
-}
-.site-header #hamburger-menu-list a:hover {
-  background: #eee;
-}
-
-.site-main {
-  flex: 1;
-  margin: 30px auto;
-  padding: 0 20px;
-  text-align: center;
-}
-
-.ranking-title {
-  display: inline-block;
-  margin: 0px auto 20px;
-  font-size: 30px;
-  background: #dcdcdc;
-  padding: 8px 12px;
-  border: 2px solid #444;
-  text-align: center;
-  font-family: 'Press Start 2P', monospace;
-}
-
-.ranking-controls,
-.comment-controls {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin: 20px 0;
-  font-family: 'Press Start 2P', monospace;
-}
-
-.char-count {
-  margin-right: 8px;
-}
-
-#open-submit,
-.floating-post-btn {
-  margin-left: 8px;
+.menu {
   position: fixed;
-  bottom: 16px;
-  right: 16px;
-  width: 48px;
-  height: 48px;
-  background: #333;
-  color: #fff;
-  border: 2px solid #000;
-  border-radius: 8px;
-  font-size: 16px;
+  top: 0; left: 0;
+  width: 180px;
+  height: 100vh;
+  padding: 30px 20px;
+  padding-bottom: 40px;
+  background: #222;
+  color: white;
+  z-index: 1000;                    /* 確保在 overlay 之上 */
+  transform: translateX(-100%);     /* 初始滑出畫面左方 */
+  transition: transform 0.4s cubic-bezier(0.25,0.8,0.25,1);
+  pointer-events: none;             /* 初始不攔截點擊 */
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* slide-in 並啟用互動 */
+.menu.show {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* 遮罩 */
+.overlay {
+  position: fixed;
+  inset: 0;                         /* top:0; left:0; width:100%; height:100% */
+  background: rgba(0,0,0,0.5);
+  z-index: 999;                     /* 在 menu 之下 */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* fade-in 並開始攔截點擊 */
+.overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* menu 內部列表 */
+.menu-list {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex; flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+  text-align: left;
+}
+
+.menu-list li {
+  padding: 8px 0;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  
+}
+
+.menu-list a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 4px 0;
+}
+
+.menu-list a:hover {
+  color: #90ee90;
+  text-decoration: underline;
+}
+
+/* 語言區塊 */
+.lang-section {
+  font-size: 13px;
+  opacity: 0.9;
+  margin-bottom: 80px;
+  text-align: left;
+}
+
+.lang-title {
+  font-weight: bold;
+  font-size: 13px;
+  opacity: 0.8;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding: 5px 0;
+  margin: 10px auto;
+}
+
+.lang-option {
   cursor: pointer;
-  z-index: 1000;
-  font-family: 'Press Start 2P', monospace;
+  font-size: 13px;
+  opacity: 0.9;
+  margin: 10px auto;
+  padding-left: 4px;
+}
+
+.lang-option:hover {
+  color: #90ee90;
+}
+
+/* 關閉按鈕 */
+.close-btn {
+  position: absolute;
+  top: 10px; right: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 /* ===== About 頁面整合樣式（響應式設計） ===== */
 .about-container {
-  max-width: 100%;
+  max-width: 850px;
   width: 90%;
   margin: 0px auto;
   padding: 20px;
@@ -220,7 +194,7 @@ html, body {
 }
 
 .about-letter {
-  max-width: 100%;
+  max-width: 800px;
   width: 95%;
   margin: 0px auto;
   padding: 20px;
