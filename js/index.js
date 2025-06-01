@@ -160,5 +160,8 @@ function stopSpinning() {
   }, slots.length * 500 + 500);
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('toggle-btn')?.addEventListener('click', toggleSpin);
+});
 
 
