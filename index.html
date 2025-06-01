@@ -16,37 +16,38 @@
   <link rel="stylesheet" href="css/index.css"/>
 
   <!-- JS -->
-  <script defer src="js/language.js"></script>
+  <script defer src="js/all.js"></script>
   <script defer src="js/index.js"></script>
+
+
 </head>
 <body>
+
+  <!-- 👇 必須在 page-wrapper 外！ -->
+  <div id="overlay" class="overlay"></div>
+
   <div class="page-wrapper">
 
     <!-- Header：漢堡選單 + 側邊滑出 + 語言 -->
     <div class="site-header">
       <button id="hamburger-menu-btn" class="hamburger-menu-btn" aria-label="開啟主選單">☰</button>
 
-      <nav id="side-menu" class="menu hidden">
-
-        <button id="menu-close" class="close-btn">×</button>
+      <nav id="side-menu" class="menu">
+        <button id="menu-close" class="close-btn"> ✕ </button>
 
         <ul class="menu-list">
-        <li><a href="index.html" data-i18n="navHome">💭 離職嗎？</a></li>
-        <li><a href="ranking.html" data-i18n="navRanking">🏆 排行榜</a></li>
-        <li><a href="about.html" data-i18n="navAbout">ℹ️ 關於</a></li>
-       </ul>
+          <li><a href="index.html" data-i18n="navHome">💭 離職嗎？</a></li>
+          <li><a href="ranking.html" data-i18n="navRanking">🏆 排行榜</a></li>
+          <li><a href="about.html" data-i18n="navAbout">ℹ️ 關於</a></li>
+        </ul>
 
-      <div class="lang-section">
-        <div class="lang-title">🌐 語言 Language</div>
-        <div class="lang-option" data-lang="zh-TW">繁體中文</div>
-        <div class="lang-option" data-lang="en">English</div>
-      </div>
+        <div class="lang-section">
+          <div class="lang-title">🌐 語言 Language</div>
+          <div class="lang-option" data-lang="zh-TW">繁體中文</div>
+          <div class="lang-option" data-lang="en">English</div>
+        </div>
       </nav>
-
     </div>
-
-    <!-- 半透明遮罩 -->
-    <div id="overlay" class="overlay hidden"></div>
 
     <!-- Main Content -->
     <main class="site-main main-content">
@@ -68,4 +69,4 @@
     </footer>
   </div>
 </body>
-</html>
+</html> 
