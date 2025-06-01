@@ -160,49 +160,5 @@ function stopSpinning() {
   }, slots.length * 500 + 500);
 }
 
-// === 漢堡選單與語言切換 ===
-document.addEventListener('DOMContentLoaded', () => {
-  // 開始按鈕
-  document.getElementById('toggle-btn')?.addEventListener('click', toggleSpin);
-
-  // 側邊選單開關
-  const menuBtn = document.getElementById('hamburger-menu-btn');
-  const closeBtn = document.getElementById('menu-close');
-  const sideMenu = document.getElementById('side-menu');
-  const overlay = document.getElementById('overlay');
-
- function openMenu() {
-  sideMenu.classList.remove('hidden');
-  // 強迫觸發重繪，才能讓 transition 生效
-  void sideMenu.offsetWidth;
-  sideMenu.classList.add('show');
-  overlay.classList.add('show');
-}
-
-function closeMenu() {
-  sideMenu.classList.remove('show');
-  overlay.classList.remove('show');
-  setTimeout(() => {
-    sideMenu.classList.add('hidden');
-  }, 400); // 跟 transition 時間同步
-}
 
 
-  function closeMenu() {
-    sideMenu.classList.remove('show');
-    overlay.classList.remove('show');
-  }
-
-  menuBtn?.addEventListener('click', openMenu);
-  closeBtn?.addEventListener('click', closeMenu);
-  overlay?.addEventListener('click', closeMenu);
-
-  // 多語系切換
-  document.querySelectorAll('.lang-option').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const lang = btn.dataset.lang;
-      localStorage.setItem('lang', lang);
-      location.reload();
-    });
-  });
-});
