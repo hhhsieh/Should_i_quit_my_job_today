@@ -10,9 +10,9 @@ html, body {
 .page-wrapper {
   display: flex; flex-direction: column;
   min-height: 100vh;
+  position: relative;
 }
 
-/* ===== site-header：只排版，不帶背景/邊框/陰影 ===== */
 .site-header {
   position: relative;
   width: 95%;
@@ -22,108 +22,129 @@ html, body {
   align-items: center;
   height: 56px;
 }
-
-.site-header .lang-btn {
-  background: #333; color: #fff;
-  border: 2px solid #000;
-  padding: 8px 12px;
-  font-size: 18px;
-  border-radius: 6px;
-  cursor: pointer;
-  position: static;
-  font-family: monospace;
-}
-
-.site-header #lang-options {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: #fff;
-  border: 2px solid #333;
-  border-radius: 6px;
-  width: 160px;
-  list-style: none;
-  margin: 0; padding: 0;
-  box-shadow: 0 0 0 3px #666;
-  font-size: 14px;
-  z-index: 10;
-  font-family: sans-serif;
-}
-.site-header #lang-options.show {
-  display: block;
-}
-.site-header #lang-options li {
-  padding: 12px;
-  text-align: left;
-  cursor: pointer;
-}
-.site-header #lang-options li:hover {
-  background: #ddd;
-}
-
-.site-header .hamburger-menu-btn {
-  background: #333; color: #fff;
-  border: 2px solid #000;
-  padding: 8px 12px;
-  font-size: 18px;
-  border-radius: 6px;
-  cursor: pointer;
-  position: static;
-  font-family: 'Press Start 2P', monospace;
-}
-
-.site-header #hamburger-menu-list {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  font-size: 14px;
-  background: #fff;
-  border: 2px solid #000;
-  border-radius: 6px;
-  padding: 8px 12px;
-  width: 160px;
-  z-index: 10;
-  flex-direction: column;
-  box-shadow: 0 0 0 3px #666;
-  text-align: left;
-}
-.site-header #hamburger-menu-list.show {
-  display: flex;
-}
-.site-header #hamburger-menu-list.hidden {
-  display: none !important;
-}
-
-.site-header #hamburger-menu-list ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.site-header #hamburger-menu-list li {
-  border-top: 1px solid #aaa;
-}
-.site-header #hamburger-menu-list li:first-child {
-  border-top: none;
-}
-.site-header #hamburger-menu-list a {
-  display: block;
-  padding: 8px 0;
-  font-family: inherit;
-  font-size: 14px;
-  color: #333;
-  text-decoration: none;
-}
-.site-header #hamburger-menu-list a:hover {
-  background: #eee;
-}
-
 .site-main {
-  flex: 1;
-  margin: 30px auto;
-  padding: 0 20px;
-  text-align: center;
+  display: block;
+  flex: 0 0 auto;
+  padding: 20px 20px 0;
+  
+}
+/* ===== 側邊滑出選單 ===== */
+.hamburger-menu-btn{
+  background: #333; color: #fff;
+  border: 2px solid #000;
+  padding: 8px 12px;
+  font-size: 18px;
+  border-radius: 6px;
+  }
+
+.menu {
+  position: fixed;
+  top: 0; left: 0;
+  width: 180px;
+  height: 100vh;
+  padding: 30px 20px;
+  padding-bottom: 40px;
+  background: #222;
+  color: white;
+  z-index: 1000;                    /* 確保在 overlay 之上 */
+  transform: translateX(-100%);     /* 初始滑出畫面左方 */
+  transition: transform 0.4s cubic-bezier(0.25,0.8,0.25,1);
+  pointer-events: none;             /* 初始不攔截點擊 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* slide-in 並啟用互動 */
+.menu.show {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* 遮罩 */
+.overlay {
+  position: fixed;
+  inset: 0;                         /* top:0; left:0; width:100%; height:100% */
+  background: rgba(0,0,0,0.5);
+  z-index: 999;                     /* 在 menu 之下 */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* fade-in 並開始攔截點擊 */
+.overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* menu 內部列表 */
+.menu-list {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex; flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+  text-align: left;
+}
+
+.menu-list li {
+  padding: 8px 0;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  
+}
+
+.menu-list a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 4px 0;
+}
+
+.menu-list a:hover {
+  color: #90ee90;
+  text-decoration: underline;
+}
+
+/* 語言區塊 */
+.lang-section {
+  font-size: 13px;
+  opacity: 0.9;
+  margin-bottom: 80px;
+  text-align: left;
+}
+
+.lang-title {
+  font-weight: bold;
+  font-size: 13px;
+  opacity: 0.8;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding: 5px 0;
+  margin: 10px auto;
+}
+
+.lang-option {
+  cursor: pointer;
+  font-size: 13px;
+  opacity: 0.9;
+  margin: 10px auto;
+  padding-left: 4px;
+}
+
+.lang-option:hover {
+  color: #90ee90;
+}
+
+/* 關閉按鈕 */
+.close-btn {
+  position: absolute;
+  top: 10px; right: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .ranking-title {
@@ -146,13 +167,17 @@ html, body {
   font-family: monospace;
 }
 
+html[lang="en"] .range-tabs {
+  font-size: 10px;
+}
+
 
 .range-tabs .range-tab {
   background: #333;
   color: #fff;
   border: 2px solid #000;
   padding: 6px 12px;
-  font-size: 10px;
+  font-size: 16px;
   cursor: pointer;
   border-radius: 6px;
   font-family: monospace;
@@ -170,7 +195,7 @@ html, body {
   color: #fff;
   border: 2px solid #000;
   padding: 6px 12px;
-  font-size: 10px;
+  font-size: 16px;
   cursor: pointer;
   border-radius: 6px;
   display: inline-flex;
@@ -189,18 +214,18 @@ html, body {
   left: 0;
   background: #dcdcdc;
   border: 2px solid #333;
-  border-radius: 6px;
+  border-radius: 10px;
   list-style: none;
   padding: 4px 0;
   margin: 0;
-  width: 140px;
+  width: 100px;
   transform-origin: top center;
   font-family: 'Noto Sans TC', sans-serif;
 }
 
 .sort-options li {
-  padding: 6px 12px;
-  font-size: 10px;
+  padding: 8px 12px;
+  font-size: 12px;
   cursor: pointer;
 }
 
@@ -214,11 +239,31 @@ html, body {
 }
 
 #ranking-list {
-  display: grid;
+  max-height: none;
+  overflow-y: visible;
+  display: flex;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
+  width: 90%;
   max-width: 800px;
   margin: 0 auto;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+@media (max-width: 768px) {
+  /* header 高度 56px，控制列＋標題約 80px，footer 高度 40px，共 176px */
+  #ranking-list {
+    max-height: calc(100vh - 176px);
+    overflow-y: auto;
+  }
+}
+
+/* ── 桌機版（寬度 ≥ 769px）：保留整頁滾動 ── */
+@media (min-width: 769px) {
+  #ranking-list {
+    max-height: none;
+    overflow-y: visible;
+  }
 }
 
 .ranking-item {
@@ -236,7 +281,7 @@ html, body {
 }
 
 .reason {
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.4;
   margin-bottom: 12px;
   font-family: 'Noto Sans TC', sans-serif;
@@ -326,14 +371,14 @@ html, body {
 #open-submit,
 .floating-post-btn {
   position: fixed;
-  bottom: 16px;
+  bottom: 25px;
   right: 16px;
   width: 48px;
   height: 48px;
-  background: #333;
+  background: #444;
   color: #fff;
-  border: 2px solid #000;
-  border-radius: 8px;
+  border: 1px solid #444;
+  border-radius: 50%; 
   font-size: 16px;
   display: flex;
   align-items: center;
@@ -416,9 +461,9 @@ html, body {
 }
 
 #footer {
-  padding: 10px;
-  font-size: 12px;
+  padding: 0px ;
+  font-size: 8px;
   text-align: center;
-  line-height: 1.6;
   font-family: 'Noto Sans TC', sans-serif;
+  margin-top: auto; 
 }
