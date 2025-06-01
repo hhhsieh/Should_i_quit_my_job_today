@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-
-
   // ─── 二、抓元素，並預設分頁範圍與排序 ───
   const rankingList       = document.getElementById('ranking-list');
   const openBtn           = document.getElementById('open-submit');
@@ -144,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 把文字寫入 Firestore，並帶上 lang 欄位
-    firebase.firestore().collection('Quit reasons').add({
+    firebase.firestore().collection('quitreasons').add({
       text,
       lang: detectedLang, // 'zh-TW' 或 'en'
       votes: 0,
@@ -180,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 建立 Firestore 查詢：先拿 collection，再篩選語系，最後篩時間（如果需要）
-    let query = firebase.firestore().collection('Quit reasons')
+    let query = firebase.firestore().collection('quitreasons')
                   .where('lang', '==', pageLang);
 
     if (currentRange !== 'all') {
@@ -231,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const voteSpan = div.querySelector('.votes');
 
       plusBtn.addEventListener('click', () => {
-        const docRef = firebase.firestore().collection('Quit reasons').doc(item.id);
+        const docRef = firebase.firestore().collection('quitreasons').doc(item.id);
 
         if (hasVotedFor(item.id)) {
           docRef.update({ votes: firebase.firestore.FieldValue.increment(-1) })
