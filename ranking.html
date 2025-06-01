@@ -18,7 +18,7 @@
 <!-- Firebase 初始化：不能 defer -->
 <script>
   const firebaseConfig = {
-    apiKey: "AIzaSyCIwfAbnhBj7g-dhblbN5XJ0fwEYebxg2I",
+    apiKey: "AIzaSyDnI6RkTUn0sdFvEcbqC-V88m2SqVRsJRg",
     authDomain: "quit-reasons.firebaseapp.com",
     projectId: "quit-reasons",
     storageBucket: "quit-reasons.firebasestorage.app",
@@ -30,35 +30,39 @@
 </script>
 
 <!-- 語系檔案 -->
-<script defer src="js/language.js"></script>
+<script defer src="js/all.js"></script>
 
 <!-- 排行榜邏輯（最晚執行） -->
 <script defer src="js/ranking.js"></script>
 
 </head>
-
 <body>
+
+  <!-- 👇 必須在 page-wrapper 外！ -->
+  <div id="overlay" class="overlay"></div>
+
   <div class="page-wrapper">
 
-    <!-- ===== site-header：漢堡 + 語言 + 選單 ===== -->
+    <!-- Header：漢堡選單 + 側邊滑出 + 語言 -->
     <div class="site-header">
       <button id="hamburger-menu-btn" class="hamburger-menu-btn" aria-label="開啟主選單">☰</button>
-      <div class="lang-wrapper">
-        <button id="lang-toggle-btn" class="lang-btn" aria-label="切換語言">🌐</button>
-        <ul id="lang-options" class="hidden">
-          <li data-lang="zh-TW">繁體中文</li>
-          <li data-lang="en">English</li>
-        </ul>
-      </div>
-      <nav id="hamburger-menu-list" class="hamburger-menu-list">
-        <ul>
+
+      <nav id="side-menu" class="menu">
+        <button id="menu-close" class="close-btn">✕</button>
+
+        <ul class="menu-list">
           <li><a href="index.html" data-i18n="navHome">💭 離職嗎？</a></li>
           <li><a href="ranking.html" data-i18n="navRanking">🏆 排行榜</a></li>
           <li><a href="about.html" data-i18n="navAbout">ℹ️ 關於</a></li>
         </ul>
+
+        <div class="lang-section">
+          <div class="lang-title">🌐 語言 Language</div>
+          <div class="lang-option" data-lang="zh-TW">繁體中文</div>
+          <div class="lang-option" data-lang="en">English</div>
+        </div>
       </nav>
     </div>
-
     <!-- ===== site-main：排行榜 + 留言板 + 投稿 ===== -->
     <div class="site-main main-content">
       <h1 class="ranking-title" data-i18n="titleRanking">今天想離職的理由</h1>
