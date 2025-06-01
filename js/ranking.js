@@ -1,7 +1,11 @@
 // js/ranking.js
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('[DEBUG] JS 初始化開始');
+  console.log('[DEBUG] Ranking JS 初始化開始');
+
+  // 0. 先讀 <html lang="…">，決定當前語系：'zh-TW' 或 'en'
+  const pageLang = document.documentElement.getAttribute('lang') || 'zh-TW';
+  // 之後 fetch / modal / char-limit 都會用到 pageLang
 
   if (!window.firebase || !firebase.apps.length) {
     console.error('[ERROR] Firebase 尚未初始化');
@@ -9,10 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  const hamburgerMenuBtn  = document.getElementById('hamburger-menu-btn');
-  const hamburgerMenuList = document.getElementById('hamburger-menu-list');
-  const langToggleBtn     = document.getElementById('lang-toggle-btn');
-  const langOptions       = document.getElementById('lang-options');
+
+
+  // ─── 二、抓元素，並預設分頁範圍與排序 ───
   const rankingList       = document.getElementById('ranking-list');
   const openBtn           = document.getElementById('open-submit');
   const modal             = document.getElementById('submit-modal');
@@ -27,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentRange = 'day';
   let currentSort = 'popular';
 
+  // 票選系統相關
   const VOTE_KEY = 'voted_reason_ids';
   const getVotedReasonIds = () => JSON.parse(localStorage.getItem(VOTE_KEY)) || [];
   const markReasonAsVoted = (id) => {
@@ -42,35 +46,18 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   const hasVotedFor = (id) => getVotedReasonIds().includes(id);
 
+  // 這兩個函式留著，如果你要根據使用者輸入判斷語系時再用，但下面我們
+  // 改為用 pageLang 直接決定 maxlength。
   function detectLang(text) {
     const zhMatch = text.match(/[\u4e00-\u9fff]/g) || [];
     const enMatch = text.match(/[a-zA-Z]/g) || [];
     return enMatch.length > zhMatch.length ? 'en' : 'zh-TW';
   }
-
   function getMaxLengthByLang(lang) {
     return lang === 'en' ? 120 : 60;
   }
 
-  hamburgerMenuBtn?.addEventListener('click', e => {
-    e.stopPropagation();
-    hamburgerMenuList.classList.toggle('show');
-  });
-  hamburgerMenuList?.addEventListener('click', e => e.stopPropagation());
-
-  langToggleBtn?.addEventListener('click', e => {
-    e.stopPropagation();
-    langOptions.classList.toggle('show');
-  });
-  langOptions?.addEventListener('click', e => e.stopPropagation());
-
-  document.addEventListener('click', () => {
-    hamburgerMenuList.classList.remove('show');
-    langOptions.classList.remove('show');
-    sortContainer?.classList.remove('open');
-    modal?.classList.add('hidden');
-  });
-
+  // ─── 三、範圍選項（本日/本週/全部）───
   rangeTabs = document.querySelectorAll('.range-tab');
   rangeTabs.forEach(tab => {
     tab.addEventListener('click', e => {
@@ -82,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ─── 四、排序選項（最多/最新）───
   sortBtn       = document.querySelector('.sort-btn');
   sortContainer = sortBtn?.parentElement;
   sortOptions   = document.querySelectorAll('.sort-options li');
@@ -102,57 +90,84 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ─── 五、開啟「投稿 Modal」時，預設 textarea maxlength & 字數顯示───
   openBtn?.addEventListener('click', e => {
     e.stopPropagation();
     modal.classList.remove('hidden');
+
+    // 1. 根據 pageLang 決定最大長度 (中文60字/英文120字)
+    const maxLen = getMaxLengthByLang(pageLang);
+
+    // 2. 清空先前輸入，並設定 maxlength
     reasonInput.value = '';
+    reasonInput.setAttribute('maxlength', maxLen);
+
+    // 3. 初始化字數顯示：「0 / maxLen」
+    if (charCount) charCount.textContent = `0 / ${maxLen}`;
+
     reasonInput.focus();
-    if (charCount) charCount.textContent = '0 / 90';
   });
 
+  // ─── 六、輸入文字時，動態更新字數顯示───
   reasonInput?.addEventListener('input', () => {
-    const text = reasonInput.value.trim();
-    const lang = detectLang(text);
-    const maxLength = getMaxLengthByLang(lang);
-    if (charCount) charCount.textContent = `${text.length} / ${maxLength}`;
+    // 直接用 pageLang 決定最大長度（不再 detectLang）
+    const maxLen = getMaxLengthByLang(pageLang);
+    const len = reasonInput.value.trim().length;
+    if (charCount) charCount.textContent = `${len} / ${maxLen}`;
   });
 
+  // 點擊 Modal 背景或取消按鈕要關閉
   modal?.addEventListener('click', e => e.stopPropagation());
   backdrop?.addEventListener('click', () => modal.classList.add('hidden'));
   cancelBtn?.addEventListener('click', () => modal.classList.add('hidden'));
 
+  // ─── 七、送出按鈕：檢查長度 & 寫入 Firestore───
   submitBtn?.addEventListener('click', () => {
     const text = reasonInput.value.trim();
-    const detectedLang = detectLang(text);
-    const maxLength = getMaxLengthByLang(detectedLang);
+    const detectedLang = pageLang;              // 這裡直接用 pageLang（zh-TW / en）
+    const maxLength = getMaxLengthByLang(pageLang);
 
     if (text.length < 2) {
-      alert('請輸入至少兩個字');
+      const alertMsg = pageLang === 'en'
+        ? 'Please enter at least 2 characters'
+        : '請輸入至少兩個字';
+      alert(alertMsg);
       return;
     }
 
     if (text.length > maxLength) {
-      alert(`離職理由請勿超過 ${maxLength} 字，請精煉你的痛苦 ✂️`);
+      const alertMsg = pageLang === 'en'
+        ? `Your quit reason must be no more than ${maxLength} characters.`
+        : `離職理由請勿超過 ${maxLength} 字，請精煉你的痛苦 ✂️`;
+      alert(alertMsg);
       return;
     }
 
+    // 把文字寫入 Firestore，並帶上 lang 欄位
     firebase.firestore().collection('Quit reasons').add({
       text,
-      lang: detectedLang,
+      lang: detectedLang, // 'zh-TW' 或 'en'
       votes: 0,
       time: Date.now()
     })
     .then(() => {
       modal.classList.add('hidden');
-      alert('投稿成功🎉');
+      const successMsg = pageLang === 'en'
+        ? 'Submission successful 🎉'
+        : '投稿成功🎉';
+      alert(successMsg);
       fetchReasonsAndRender();
     })
     .catch(err => {
       console.error('[ERROR] 投稿失敗：', err);
-      alert('投稿失敗，請稍後再試');
+      const failMsg = pageLang === 'en'
+        ? 'Submission failed, please try again later.'
+        : '投稿失敗，請稍後再試';
+      alert(failMsg);
     });
   });
 
+  // ─── 八、抓留言並渲染；在查詢時只帶 pageLang 過濾───
   function fetchReasonsAndRender() {
     const now = Date.now();
     let timeLimit = 0;
@@ -164,7 +179,9 @@ document.addEventListener('DOMContentLoaded', () => {
       timeLimit = now - 7 * 24 * 60 * 60 * 1000;
     }
 
-    let query = firebase.firestore().collection('Quit reasons');
+    // 建立 Firestore 查詢：先拿 collection，再篩選語系，最後篩時間（如果需要）
+    let query = firebase.firestore().collection('Quit reasons')
+                  .where('lang', '==', pageLang);
 
     if (currentRange !== 'all') {
       query = query.where('time', '>', timeLimit);
@@ -186,6 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
+  // ─── 九、渲染留言列表 & 投票邏輯───
   function renderRanking() {
     rankingList.innerHTML = '';
 
@@ -226,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(err => {
               console.error('[ERROR] 取消投票失敗：', err);
-              alert('取消投票失敗，請稍後再試');
+              alert(pageLang === 'en' ? 'Unvote failed, please try again.' : '取消投票失敗，請稍後再試');
             });
         } else {
           docRef.update({ votes: firebase.firestore.FieldValue.increment(1) })
@@ -239,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(err => {
               console.error('[ERROR] 投票失敗：', err);
-              alert('投票失敗，請稍後再試');
+              alert(pageLang === 'en' ? 'Vote failed, please try again.' : '投票失敗，請稍後再試');
             });
         }
       });
@@ -248,5 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 初次載入就呼叫一次
   fetchReasonsAndRender();
 });
