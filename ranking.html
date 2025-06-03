@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="titleRanking">大家的離職理由｜今天該離職了嗎？</title>
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+
+
+  <link rel="stylesheet" href="css/all.css"/>
+  <link rel="stylesheet" href="css/ranking.css" />
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDnI6RkTUn0sdFvEcbqC-V88m2SqVRsJRg",
+    authDomain: "quit-reasons.firebaseapp.com",
+    projectId: "quit-reasons",
+    storageBucket: "quit-reasons.firebasestorage.app",
+    messagingSenderId: "692551325051",
+    appId: "1:692551325051:web:60ff6a63b83c2961cc59de",
+    measurementId: "G-5SRKFNRT1N"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+
+<script defer src="js/all.js"></script>
+
+
+<script defer src="js/ranking.js"></script>
+
+</head>
+<body>
+
+  <div id="overlay" class="overlay"></div>
+
+  <div class="page-wrapper">
+    <div class="site-header">
+      <button id="hamburger-menu-btn" class="hamburger-menu-btn" aria-label="開啟主選單">☰</button>
+
+      <nav id="side-menu" class="menu">
+        <button id="menu-close" class="close-btn">✕</button>
+
+        <ul class="menu-list">
+          <li><a href="index.html">💭 離職嗎？</a></li>
+          <li><a href="ranking.html">🏆 排行榜</a></li>
+          <li><a href="about.html">ℹ️ 關於</a></li>
+        </ul>
+
+        <div class="lang-section">
+          <div class="lang-title">🌐 語言 Language</div>
+          <div class="lang-option" data-lang="zh-TW">繁體中文</div>
+          <div class="lang-option" data-lang="en">English</div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="site-main main-content">
+      <h1 class="ranking-title">今天想離職的理由</h1>
+
+      <div class="ranking-controls">
+        <div class="range-tabs">
+          <button class="range-tab active" data-range="day">本日</button>
+          <button class="range-tab" data-range="week">本週</button>
+          <button class="range-tab" data-range="all">全部</button>
+        </div>
+        <div class="sort-dropdown">
+          <button class="sort-btn" >🔥 最多＋ <span class="chevron">▾</span></button>
+          <ul class="sort-options">
+            <li data-sort="popular">🔥 最多＋</li>
+            <li data-sort="latest">🆕 最新</li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div id="ranking-list">
+        <li id="comments-container"> </li>
+      </div>
+
+      <button id="open-submit" class="floating-post-btn" title="我要投稿">✏️</button>
+
+
+      <section id="submit-modal" class="modal hidden">
+        <div id="submit-backdrop" class="modal-backdrop"></div>
+        <div class="modal-content">
+          <h2 data-i18n="modalTitle">寫下你的離職理由：</h2>
+          <textarea id="reason-input" maxlength="90" placeholder="請輸入離職理由（最多 60 字）"></textarea>
+          <div id="char-count">0 / 60</div>
+
+          <div class="modal-actions">
+            <button id="submit-reason">送出</button>
+            <button id="cancel-submit">取消</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+    <footer id="footer">
+      <p>© 2025 我今天該離職了嗎？｜<a href="about.html" >關於本站</a></p>
+    </footer>
+
+  </div>
+</body>
+</html>

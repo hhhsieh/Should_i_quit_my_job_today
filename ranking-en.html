@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="titleRanking"> Everyone’s Reasons for Quitting | Should I Quit Today? </title>
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+
+
+  <link rel="stylesheet" href="css/all.css"/>
+  <link rel="stylesheet" href="css/ranking-en.css" />
+
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDnI6RkTUn0sdFvEcbqC-V88m2SqVRsJRg",
+    authDomain: "quit-reasons.firebaseapp.com",
+    projectId: "quit-reasons",
+    storageBucket: "quit-reasons.firebasestorage.app",
+    messagingSenderId: "692551325051",
+    appId: "1:692551325051:web:60ff6a63b83c2961cc59de",
+    measurementId: "G-5SRKFNRT1N"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+
+<script defer src="js/all.js"></script>
+<script defer src="js/ranking.js"></script>
+
+</head>
+<body>
+
+
+  <div id="overlay" class="overlay"></div>
+
+  <div class="page-wrapper">
+
+
+    <div class="site-header">
+      <button id="hamburger-menu-btn" class="hamburger-menu-btn" aria-label="開啟主選單">☰</button>
+
+      <nav id="side-menu" class="menu">
+        <button id="menu-close" class="close-btn">✕</button>
+
+        <ul class="menu-list">
+          <li><a href="index-en.html">💭 QUIT or not？</a></li>
+          <li><a href="ranking-en.html">🏆 Ranking </a></li>
+          <li><a href="about-en.html">ℹ️ About </a></li>
+        </ul>
+
+        <div class="lang-section">
+          <div class="lang-title">🌐 語言 Language</div>
+          <div class="lang-option" data-lang="zh-TW">繁體中文</div>
+          <div class="lang-option" data-lang="en">English</div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="site-main main-content">
+      <h1 class="ranking-title">Quit reasons</h1>
+
+
+      <div class="ranking-controls">
+        <div class="range-tabs">
+          <button class="range-tab active" data-range="day">Today</button>
+          <button class="range-tab" data-range="week">This week </button>
+          <button class="range-tab" data-range="all">All</button>
+        </div>
+        <div class="sort-dropdown">
+          <button class="sort-btn">🔥 Most＋ <span class="chevron">▾</span></button>
+          <ul class="sort-options">
+            <li data-sort="popular">🔥 Most＋</li>
+            <li data-sort="latest">🆕 Newest </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div id="ranking-list">
+
+        <li id="comments-container"> </li>
+      </div>
+
+      <button id="open-submit" class="floating-post-btn" title="Share a Reason for Quitting">✏️</button>
+
+
+      <section id="submit-modal" class="modal hidden">
+        <div id="submit-backdrop" class="modal-backdrop"></div>
+        <div class="modal-content">
+          <h2 data-i18n="modalTitle">Write down your reason for quitting:</h2>
+          <textarea id="reason-input" maxlength="120" placeholder="Please enter your reason for quitting (up to 120 characters)"></textarea>
+          <div id="char-count">0 / 120</div>
+
+          <div class="modal-actions">
+            <button id="submit-reason">Submit</button>
+            <button id="cancel-submit">Cancel</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+    <footer id="footer">
+      <p>© 2025 Should i quit my job today?｜<a href="about.html" >About This Site</a></p>
+    </footer>
+
+  </div>
+</body>
+</html>
