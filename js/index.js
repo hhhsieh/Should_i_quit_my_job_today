@@ -59,6 +59,7 @@ function getWeightedRandomCombo() {
   return expanded[idx];
 }
 
+
 function startSpinning() {
   isSpinning = true;
   isWaiting = false;
@@ -183,6 +184,7 @@ function stopSpinning() {
 
     document.getElementById('result-msg').innerText = message;
 
+
     setTimeout(() => {
       btn.innerText = 'START';
       btn.classList.remove('stop-mode','disabled');
@@ -197,7 +199,6 @@ function toggleSpin() {
   if (isWaiting) return;
   isSpinning ? stopSpinning() : startSpinning();
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('toggle-btn')?.addEventListener('click', toggleSpin);
