@@ -41,13 +41,13 @@ let gotOOO = false;
 
 
 const outcomes = [
-  { combo: ['O','O','O'], weight: 20 },
+  { combo: ['O','O','O'], weight: 11 },
   { combo: ['O','O','X'], weight: 15 },
   { combo: ['O','X','O'], weight: 15 },
   { combo: ['O','X','X'], weight: 15 },
-  { combo: ['X','O','O'], weight: 14 },
-  { combo: ['X','O','X'], weight: 10 },
-  { combo: ['X','X','O'], weight: 10 },
+  { combo: ['X','O','O'], weight: 15 },
+  { combo: ['X','O','X'], weight: 14 },
+  { combo: ['X','X','O'], weight: 14 },
   { combo: ['X','X','X'], weight: 1 }
 ];
 
