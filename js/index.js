@@ -11,7 +11,7 @@ const translations = {
     msgTwoO:       '連續兩個Ｏ了，要不要湊湊看連續三次，或許會有驚喜（？？？） ',
     msgTwoX:       'ㄨㄚˊ 不是ＯＯＯ，再試一次吧',
     msgChaos:      '再試一次',
-    msgTripleOOO:  '恭喜你連續抽到三個Ｏ──你可以考慮真的去提離職了😉'
+    msgTripleOOO:  '恭喜你連續抽到三次ＯＯＯ ── 你可以考慮真的去提離職了😉'
   },
   'en': {
     msgOOO:        'Go ahead and quit right now!!!',
